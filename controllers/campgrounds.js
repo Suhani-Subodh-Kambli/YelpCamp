@@ -31,7 +31,7 @@ module.exports.createCampground = async(req, res )=> {
     req.flash('success', "Successfully made a new campground!");
     res.redirect(`/campgrounds/${newCampground._id}`)
     } catch(e) {
-    console.log(err);
+    console.log(e);
     req.flash('error', "Something went wrong while creating campground");
     res.redirect('/campgrounds');
 }};

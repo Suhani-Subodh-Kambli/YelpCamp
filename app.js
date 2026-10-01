@@ -27,7 +27,7 @@ const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp-maptiler'); 
+mongoose.connect('process.env.DB_URL'); 
 
 const db = mongoose.connection;
 // Event listeners for connection states
@@ -50,7 +50,7 @@ app.use(sanitizeV5({ replaceWith: '_' }));
 
 const sessionConfig = {
     name: 'session',
-    secret: 'thisshouldbeabettersecret',
+    secret: 'process.env.SECRET',
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -149,6 +149,8 @@ app.use((err, req, res, next) => {
    res.status(statusCode).render('error', { err });
 });
 
-app.listen(3000, () => {    
-    console.log("Server running on port 3000");
-})
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`);
+});
