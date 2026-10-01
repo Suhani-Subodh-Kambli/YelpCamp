@@ -2,9 +2,6 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
-console.log(process.env.SECRET)
-console.log(process.env.API_KEY)
-
 const express = require('express');
 const app = express();
 app.set('query parser', 'extended');
@@ -27,7 +24,7 @@ const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 
 
-mongoose.connect('process.env.DB_URL'); 
+mongoose.connect(process.env.DB_URL); 
 
 const db = mongoose.connection;
 // Event listeners for connection states
@@ -50,7 +47,7 @@ app.use(sanitizeV5({ replaceWith: '_' }));
 
 const sessionConfig = {
     name: 'session',
-    secret: 'process.env.SECRET',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
