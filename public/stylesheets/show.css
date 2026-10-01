@@ -1,0 +1,15 @@
+/* Campground image carousel */
+#campgroundCarousel {
+    width: 100%;
+}
+
+#campgroundCarousel .carousel-item {
+    height: 450px;
+}
+
+#campgroundCarousel .campground-image {
+    width: 100%;
+    height: 450px;
+    object-fit: contain;
+    object-position: center;
+}
